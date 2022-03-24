@@ -1,0 +1,23 @@
+	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<img src="images/IMG_0246.jpg" 
+			alt="{name} dances." 
+			width = 100px />
+	<div class="shadowbox">
+		<p>Here's a very interesting note displayed in a
+		lovely shadowed box.</p>
+	</div>
+
+    	.shadowbox {
+	width: 15em;
+	border: 1px solid #333;
+	box-shadow: 8px 8px 5px #444;
+	padding: 8px 12px;
+	background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+  }
+
+
+	@media (min-width: 640px) {
+		main {
+			max-width: none;
+		}
+	}
