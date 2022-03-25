@@ -1,47 +1,32 @@
-<svelte:head>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js" type="text/javascript" on:load={plotlyLoaded}></script>
-</svelte:head>
-
 <script>
-  import { onMount } from 'svelte';
-	let plotlyValid = false;
-	let mounted = false;
-	let headerText;
-	let plotDiv;
+  import Plotly from "./Plotly.svelte";
 
-  let plotHeader = '';
+  let plotHeader = "I am a header";
 
-  const data = [{
-    x: [0, 10, 20, 30, 40, 50],
-    y: [0, 5, 10, 30, 60, 90],
-    type: 'line'
-  }];
-	
-	const loadPlots = () => {
-		let Plot = new Plotly.newPlot(plotDiv, data, {}, {showSendToCloud:true}); 
-	}
-	
-	const plotlyLoaded = () => {
-		plotlyValid = true;
-		if(mounted){
-			loadPlots();
-		}
-	}
+  let data = [
+    {
+      x: [0, 10, 20, 30, 40, 50],
+      y: [0, 5, 10, 30, 60, 90],
+      type: "line",
+    },
+  ];
 
-  onMount(() => {
-		headerText = 'On Mount Called !';
-		mounted = true;
-		if(plotlyValid){
-			loadPlots();
-		}
-  });
-            
+  // change the data to demonstrate we the component is reactive to changes in data
+  function changeDataSomehow() {
+    data = [
+      {
+        x: data[0].x,
+        y: data[0].y.reverse(),
+        type: "line",
+      },
+    ];
+  }
 </script>
 
-<h3>{headerText}</h3>
-<div id="plotly">
-  <div>
-    <h1>{plotHeader}</h1>
-  </div>
-  <div id="plotDiv" bind:this={plotDiv}><!-- Plotly chart will be drawn inside this DIV --></div>
+<div>
+  <h1>{plotHeader}</h1>
+
+  <button on:click={changeDataSomehow}>Change Data</button>
+
+  <Plotly {data} />
 </div>
