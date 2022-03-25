@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "plotly": "^1.0.6",
+    "plotly.js-dist": "^2.11.1",
     "sirv-cli": "^2.0.0"
   }
 }
